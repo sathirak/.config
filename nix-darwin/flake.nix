@@ -54,7 +54,7 @@
           ./configuration.nix
           home-manager.darwinModules.home-manager
           {
-            home-manager.users.sathira = import ./home.nix;
+            home-manager.users.sathira = import "${toString ./.}/home.nix";
             home-manager.backupFileExtension = "backup";
           }
         ];

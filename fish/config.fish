@@ -10,5 +10,6 @@ alias c=code
 
 alias cl=clear
 
-zoxide init fish | source
+alias n=nvim
 
+zoxide init fish | source

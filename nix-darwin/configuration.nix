@@ -12,6 +12,7 @@
     # Visual Studio Code
     vscode
     tree
+    nodejs_22
     nixfmt-rfc-style # For nix formatting
     quarto # For documents
     gnupg
