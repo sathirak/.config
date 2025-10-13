@@ -11,8 +11,10 @@
   environment.systemPackages = with pkgs; [
     # Visual Studio Code
     vscode
+    maccy
+    ghostty
+    alt-tab-macos
     tree
-    nodejs_22
     nixfmt-rfc-style # For nix formatting
     quarto # For documents
     gnupg
@@ -45,7 +47,9 @@
         # If these are ever changed, use `defaults read com.apple.symbolic hotkeys AppleSymbolicHotKeys`
         # or `/usr/libexec/PlistBuddy -c "Print :AppleSymbolicHotKeys" ~/Library/Preferences/com.apple.symbolichotkeys.plist`
         # to see the AppleSymbolicHotKeys that are set by manually setting the specific shortcut in System Settings: "https://stackoverflow.com/questions/21878482/what-do-the-parameter-values-in-applesymbolichotkeys-plist-dict-represent"
-
+        "27" = {
+          enabled = false;
+        };
       };
     };
   };

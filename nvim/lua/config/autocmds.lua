@@ -6,3 +6,18 @@
 --
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+
+local function clear_cmdarea()
+  vim.defer_fn(function()
+    vim.api.nvim_echo({}, false, {})
+  end, 800)
+end
+
+vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+  callback = function()
+    if #vim.api.nvim_buf_get_name(0) ~= 0 and vim.bo.buflisted then
+      vim.cmd("silent w")
+      clear_cmdarea()
+    end
+  end,
+})

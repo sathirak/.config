@@ -10,9 +10,6 @@ return {
           explorer = {
             auto_close = true,
             hidden = true,
-            layout = {
-              preset = "vertical",
-            },
           },
         },
       },
