@@ -8,7 +8,6 @@ return {
       picker = {
         sources = {
           explorer = {
-            auto_close = true,
             hidden = true,
           },
         },

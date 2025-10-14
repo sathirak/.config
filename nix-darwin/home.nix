@@ -8,6 +8,7 @@
   # Allow non-free packages
   nixpkgs.config.allowUnfree = true;
   imports = [
+    ./modules/yazi.nix
     ./modules/rust.nix
     ./modules/git.nix
     ./modules/python.nix

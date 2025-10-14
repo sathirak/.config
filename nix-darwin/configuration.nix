@@ -11,8 +11,8 @@
   environment.systemPackages = with pkgs; [
     # Visual Studio Code
     vscode
+    lazygit
     maccy
-    ghostty
     alt-tab-macos
     tree
     nixfmt-rfc-style # For nix formatting
