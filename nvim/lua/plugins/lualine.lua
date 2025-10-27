@@ -42,7 +42,7 @@ return {
       local function mode_component()
         return {
           "mode",
-          icon = " ",
+          icon = "󰖝 ",
           fmt = function(str)
             return " " .. str .. " "
           end,
@@ -50,7 +50,7 @@ return {
             local mode = vim.fn.mode()
             return { fg = "#ffffff", bg = mode_colors[mode] or hl_color("Normal", "bg") or "#444444", gui = "bold" }
           end,
-          padding = { left = 4, right = 4 },
+          padding = 15,
         }
       end
 

@@ -11,6 +11,8 @@
   environment.systemPackages = with pkgs; [
     # Visual Studio Code
     vscode
+    tig
+    git-lfs
     lazygit
     maccy
     alt-tab-macos

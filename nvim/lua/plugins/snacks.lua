@@ -3,14 +3,7 @@ return {
     "snacks.nvim",
     ---@type snacks.Config ee. e:q
     opts = {
-      explorer = {},
-      picker = {
-        sources = {
-          explorer = {
-            hidden = true,
-          },
-        },
-      },
+
       dashboard = {
         preset = {
           pick = function(cmd, opts)
@@ -49,7 +42,7 @@ return {
           },
           {
             pane = 2,
-            { section = "keys", gap = 1, padding = { 0, 0 }, indent = 8 },
+            { section = "keys", gap = 1, padding = { 0, 0 }, indent = 0, width = 5 },
           },
           { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 2 },
           {

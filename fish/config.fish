@@ -12,11 +12,13 @@ alias cl=clear
 
 alias n=nvim
 
+alias lg=lazygit
+
 zoxide init fish | source
 
 # pnpm
-set -gx PNPM_HOME "/Users/sathira/Library/pnpm"
+set -gx PNPM_HOME /Users/sathira/Library/pnpm
 if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
+    set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
