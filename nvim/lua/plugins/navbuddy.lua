@@ -9,7 +9,6 @@ return {
     lsp = { auto_attach = true },
   },
   keys = {
-    -- Change <leader>n to <leader>nb or any unused key combo
     { "<leader>n", "<cmd>Navbuddy<CR>", desc = "Open Navbuddy" },
   },
 }

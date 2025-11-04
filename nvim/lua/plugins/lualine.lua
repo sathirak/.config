@@ -42,7 +42,7 @@ return {
       local function mode_component()
         return {
           "mode",
-          icon = "󰖝 ",
+          icon = "󰼸 ",
           fmt = function(str)
             return " " .. str .. " "
           end,

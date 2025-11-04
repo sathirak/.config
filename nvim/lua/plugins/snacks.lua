@@ -3,7 +3,16 @@ return {
     "snacks.nvim",
     ---@type snacks.Config ee. e:q
     opts = {
-
+      picker = {
+        hidden = true,
+        ignored = true,
+        sources = {
+          explorer = {
+            hidden = true,
+            ignored = true,
+          },
+        },
+      },
       dashboard = {
         preset = {
           pick = function(cmd, opts)
