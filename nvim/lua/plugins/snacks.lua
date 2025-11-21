@@ -1,20 +1,55 @@
 return {
   {
     "snacks.nvim",
-    ---@type snacks.Config ee. e:Quit
+    ---@type snacks.picker.explorer.Config ee. e:Quit
     keys = {
       { "<leader>n", false },
+      {
+        "<leader>gi",
+        function()
+          Snacks.picker.gh_issue()
+        end,
+        desc = "GitHub Issues (open)",
+      },
+      {
+        "<leader>gI",
+        function()
+          Snacks.picker.gh_issue({ state = "all" })
+        end,
+        desc = "GitHub Issues (all)",
+      },
+      {
+        "<leader>gp",
+        function()
+          Snacks.picker.gh_pr()
+        end,
+        desc = "GitHub Pull Requests (open)",
+      },
+      {
+        "<leader>gP",
+        function()
+          Snacks.picker.gh_pr({ state = "all" })
+        end,
+        desc = "GitHub Pull Requests (all)",
+      },
     },
     opts = {
+      gh = {
+        -- your gh configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      },
       picker = {
         git_status = false,
         hidden = true,
         ignored = true,
+        exclude = { "**/.git", "**/.git/**" },
         sources = {
           explorer = {
             git_status = false,
             hidden = true,
             ignored = true,
+            exclude = { "**/.git", "**/.git/**" },
           },
         },
       },

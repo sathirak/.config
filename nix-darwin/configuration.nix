@@ -22,6 +22,7 @@
     gnupg
     zoxide
     neovim
+    cmake
   ];
 
   # Install fonts
