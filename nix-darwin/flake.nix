@@ -52,6 +52,7 @@
         modules = [
           configuration
           ./configuration.nix
+          # ./prometheus.nix
           home-manager.darwinModules.home-manager
           {
             home-manager.users.sathira = import "${toString ./.}/home.nix";

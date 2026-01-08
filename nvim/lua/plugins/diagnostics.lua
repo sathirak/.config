@@ -1,12 +1,16 @@
 return {
   {
+    -- show floating diagnostics on Shift +J
     "neovim/nvim-lspconfig",
-    init = function()
-      vim.api.nvim_create_autocmd("CursorHold", {
-        callback = function()
+    keys = {
+      {
+        "J",
+        function()
           vim.diagnostic.open_float(nil, { focus = false })
         end,
-      })
-    end,
+        mode = "n",
+        desc = "Show Floating Diagnostic",
+      },
+    },
   },
 }

@@ -46,10 +46,10 @@ return {
           fmt = function(str)
             return " " .. str .. " "
           end,
-          color = function()
-            local mode = vim.fn.mode()
-            return { fg = "#ffffff", bg = mode_colors[mode] or hl_color("Normal", "bg") or "#444444", gui = "bold" }
-          end,
+          -- color = function()
+          --   local mode = vim.fn.mode()
+          --   return { fg = "#ffffff", bg = mode_colors[mode] or hl_color("Normal", "bg") or "#444444", gui = "bold" }
+          -- end,
           padding = 15,
         }
       end
@@ -68,7 +68,7 @@ return {
             {
               "branch",
               icon = " ",
-              color = { fg = "#000000", bg = "none" },
+              -- color = { fg = "#000000", bg = "none" },
             },
           },
           lualine_c = {
