@@ -7,8 +7,8 @@
     extraConfig = {
       user = {
         name = "Sathira Kulathunga";
-        email = "sathira@getren.xyz"; # should be the one associated with your github account.
-        signingKey = "Sathira <sathira@getren.xyz>"; # Find this using `gpg --list-secret-keys --keyid-format=long`
+        # email = "email@email.com"; # should be the one associated with your github account.
+        # signingKey = "Sathira <email@email.com>"; # Find this using `gpg --list-secret-keys --keyid-format=long`
       };
       core = {
         editor = "vim";
