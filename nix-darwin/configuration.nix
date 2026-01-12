@@ -9,8 +9,8 @@
 
   # List of packages to install
   environment.systemPackages = with pkgs; [
-    # Visual Studio Code
     vscode
+    nodejs
     tig
     git-lfs
     lazygit
@@ -23,6 +23,7 @@
     zoxide
     neovim
     cmake
+    statix
   ];
 
   # Install fonts
