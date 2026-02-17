@@ -16,6 +16,23 @@
     PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
   };
 
+  # Low-resource rust-analyzer config: fewer threads, less cache priming, smaller LRU.
+  # Applied globally for any editor (Neovim, VS Code, etc.) that uses rust-analyzer.
+  home.file.".config/rust-analyzer/rust-analyzer.toml".text = ''
+    # Low power / reduced memory settings (macOS battery, large workspaces)
+    [rust-analyzer]
+    numThreads = 1
+
+    [rust-analyzer.cachePriming]
+    enable = false
+
+    [rust-analyzer.lru]
+    capacity = 32
+
+    [rust-analyzer.cargo]
+    allTargets = false
+  '';
+
   # NOTE: Add "cargo install ..." things as necessary to the activation script
   home.activation.rustup-components = ''
     # Set up Rust environment

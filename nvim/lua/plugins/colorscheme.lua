@@ -1,77 +1,31 @@
 return {
-  {
-    "catppuccin/nvim",
-    lazy = true,
-    name = "catppuccin",
-    opts = {
-      lsp_styles = {
-        underlines = {
-          errors = { "undercurl" },
-          hints = { "undercurl" },
-          warnings = { "undercurl" },
-          information = { "undercurl" },
-        },
-      },
-      integrations = {
-        aerial = true,
-        alpha = true,
-        cmp = true,
-        dashboard = true,
-        flash = true,
-        fzf = true,
-        grug_far = true,
-        gitsigns = true,
-        headlines = true,
-        illuminate = true,
-        indent_blankline = { enabled = true },
-        leap = true,
-        lsp_trouble = true,
-        mason = true,
-        mini = true,
-        navic = { enabled = true, custom_bg = "lualine" },
-        neotest = true,
-        neotree = true,
-        noice = true,
-        notify = true,
-        snacks = true,
-        telescope = true,
-        treesitter_context = true,
-        which_key = true,
+  "EdenEast/nightfox.nvim",
+  opts = {
+    palettes = {
+      carbonfox = {
+        bg0 = "#0D0D0D",
+        bg1 = "#0D0D0D",
       },
     },
     specs = {
-      {
-        "akinsho/bufferline.nvim",
-        optional = true,
-        opts = function(_, opts)
-          if (vim.g.colors_name or ""):find("catppuccin") then
-            opts.highlights = require("catppuccin.special.bufferline").get_theme()
-          end
-        end,
-      },
-    },
-  },
-
-  {
-    "EdenEast/nightfox.nvim",
-
-    opts = {
-      palettes = {
-        carbonfox = {
-          bg0 = "#0D0D0D",
-          bg1 = "#0D0D0D",
-        },
-      },
-      specs = {
-        carbonfox = {},
-      },
+      carbonfox = {},
     },
   },
 
   {
     "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "carbonfox",
-    },
+    opts = function()
+      -- Time-based colorscheme for Colombo, Sri Lanka
+      -- dawnfox (light) from 00:00 to 12:00
+      -- carbonfox (dark) from 12:00 to 24:00
+      local function get_time_colorscheme()
+        local hour = tonumber(os.date("%H"))
+        return (hour >= 0 and hour < 12) and "dawnfox" or "carbonfox"
+      end
+
+      return {
+        colorscheme = "carbonfox",
+      }
+    end,
   },
 }

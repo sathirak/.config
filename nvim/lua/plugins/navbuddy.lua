@@ -11,6 +11,34 @@ return {
     return {
       lsp = { auto_attach = true },
 
+      window = {
+        sections = {
+          left = {
+            size = "10%",
+            border = nil,
+          },
+          mid = {
+            size = "30%",
+            border = nil,
+          },
+          right = {
+            size = "60%",
+            border = nil,
+            preview = "always",
+          },
+        },
+        width = "80%",
+      },
+
+      node_markers = {
+        enabled = true,
+        icons = {
+          leaf = "",
+          leaf_selected = "",
+          branch = " ",
+        },
+      },
+
       mappings = {
         ["<Left>"] = actions.parent(), -- Move to left panel
         ["<Right>"] = actions.children(), -- Move to right panel

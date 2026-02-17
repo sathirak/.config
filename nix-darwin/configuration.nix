@@ -23,7 +23,18 @@
     zoxide
     neovim
     cmake
+    (rstudioWrapper.override {
+      packages = with rPackages; [
+        ggplot2
+        dplyr
+        tidyverse
+        languageserver # Useful if you also use R in VS Code
+      ];
+    })
     statix
+    docker
+    docker-compose
+    # azuredatastudio
   ];
 
   # Install fonts

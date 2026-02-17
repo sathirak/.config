@@ -16,9 +16,11 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec = {
-    -- add LazyVim and import its plugins
+    -- 1. LazyVim core plugins (must be first)
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    -- import/override with your plugins
+    -- 2. LazyExtras (each extra in lua/plugins/extras/*.lua)
+    { import = "plugins.extras" },
+    -- 3. Your own plugins (must be last)
     { import = "plugins" },
   },
   defaults = {
@@ -30,7 +32,7 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "tokyonight", "habamax", "catppuccin" } },
+  install = { colorscheme = { "carbonfox", "dawnfox" } },
   checker = {
     enabled = true, -- check for plugin updates periodically
     notify = false, -- notify on update

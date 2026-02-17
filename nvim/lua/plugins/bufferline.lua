@@ -6,7 +6,7 @@ return {
   opts = {
     options = {
       indicator = {
-        icon = "  ",
+        icon = "",
         style = "icon",
       },
       buffer_close_icon = " ",
