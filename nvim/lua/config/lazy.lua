@@ -15,6 +15,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  -- No plugins in this config use luarocks; skip hererocks/luarocks (see :checkhealth lazy).
+  rocks = { enabled = false },
   spec = {
     -- 1. LazyVim core plugins (must be first)
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },

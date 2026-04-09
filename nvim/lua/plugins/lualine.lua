@@ -19,25 +19,6 @@ return {
 
       vim.o.laststatus = vim.g.lualine_laststatus
 
-      local function hl_color(name, attr)
-        local hl = vim.api.nvim_get_hl(0, { name = name })
-        if hl and hl[attr] then
-          return string.format("#%06x", hl[attr])
-        end
-      end
-
-      -- Pull colors dynamically from your current theme
-      local mode_colors = {
-        n = hl_color("Number", "fg") or "#7aa2f7", -- Normal
-        i = hl_color("Statement", "fg") or "#9ece6a", -- Insert
-        v = hl_color("Special", "fg") or "#bb9af7", -- Visual
-        V = hl_color("Type", "fg") or "#bb9af7",
-        [""] = hl_color("Type", "fg") or "#bb9af7",
-        c = hl_color("Function", "fg") or "#e0af68", -- Command
-        R = hl_color("Error", "fg") or "#f7768e", -- Replace
-        t = hl_color("Number", "fg") or "#7dcfff", -- Terminal
-      }
-
       -- Custom mode component with dynamic background
       local function mode_component()
         return {
@@ -46,10 +27,6 @@ return {
           fmt = function(str)
             return " " .. str .. " "
           end,
-          -- color = function()
-          --   local mode = vim.fn.mode()
-          --   return { fg = "#ffffff", bg = mode_colors[mode] or hl_color("Normal", "bg") or "#444444", gui = "bold" }
-          -- end,
           padding = 15,
         }
       end
@@ -68,7 +45,6 @@ return {
             {
               "branch",
               icon = " ",
-              -- color = { fg = "#000000", bg = "none" },
             },
           },
           lualine_c = {

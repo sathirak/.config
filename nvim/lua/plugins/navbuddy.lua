@@ -14,7 +14,7 @@ return {
       window = {
         sections = {
           left = {
-            size = "10%",
+            size = "20%",
             border = nil,
           },
           mid = {
@@ -22,7 +22,7 @@ return {
             border = nil,
           },
           right = {
-            size = "60%",
+            size = "50%",
             border = nil,
             preview = "always",
           },

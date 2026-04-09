@@ -1,0 +1,1 @@
+/nix/store/zj6m0s4z3hjnm8xqqdzmflcpm39xnc4w-home-manager-files/.config/fish/functions/__notify_long_command.fish

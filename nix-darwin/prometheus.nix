@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   prometheusConfig = pkgs.writeText "prometheus.yml" ''
@@ -9,6 +14,11 @@ let
       - job_name: 'node_exporter'
         static_configs:
           - targets: ['localhost:9000']
+      - job_name: 'voyager3'
+        static_configs:
+          - targets: ['localhost:9464']
+        metrics_path: /metrics
+        scrape_interval: 1s
 
     # Optional: help Prometheus map OTel attributes to labels
     otlp:
@@ -30,7 +40,7 @@ let
 
     [security]
     admin_user = admin
-    admin_password = admin
+    admin_password = admin 
   '';
 
   grafanaDatasources = pkgs.writeText "datasources.yaml" ''
@@ -46,6 +56,9 @@ let
   '';
 in
 {
+  # Match existing _prometheus-node-exporter user home (nix-darwin forbids changing it)
+  users.users._prometheus-node-exporter.home = lib.mkForce "/private/var/lib/prometheus-node-exporter";
+
   services.prometheus.exporters.node = {
     enable = true;
     port = 9000;

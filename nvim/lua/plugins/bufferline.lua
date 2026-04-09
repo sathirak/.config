@@ -1,12 +1,13 @@
 return {
   "akinsho/bufferline.nvim",
+  enabled = false,
   version = "*",
   dependencies = { "nvim-tree/nvim-web-devicons" },
 
   opts = {
     options = {
       indicator = {
-        icon = "",
+        icon = "   ",
         style = "icon",
       },
       buffer_close_icon = " ",

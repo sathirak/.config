@@ -1,5 +1,3 @@
--- Rust via rust-analyzer (lspconfig only, no rustaceanvim, no clippy).
--- Low-resource settings to reduce memory/CPU (aligned with ~/.config/rust-analyzer/rust-analyzer.toml).
 return {
   "neovim/nvim-lspconfig",
   opts = {

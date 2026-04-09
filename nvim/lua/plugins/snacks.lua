@@ -1,7 +1,7 @@
 return {
   {
     "snacks.nvim",
-    ---@type snacks.picker.explorer.Config ee. e:Quit
+    ---@type snacks.picker.explorer.Config
     keys = {},
     opts = {
       picker = {
@@ -15,7 +15,20 @@ return {
             hidden = true,
             ignored = true,
             exclude = { "**/.git", "**/.git/**", "**/.DS_Store" },
+            -- File-type icons off; folder icons (closed/open) stay via icons.files.dir / dir_open
+            format = function(item, picker)
+              local fmt = require("snacks.picker.format")
+              local files = picker.opts.icons.files
+              local prev = files.enabled
+              if not item.dir then
+                files.enabled = false
+              end
+              local ret = fmt.file(item, picker)
+              files.enabled = prev
+              return ret
+            end,
             layout = {
+              hidden = { "input" },
               layout = {
                 width = 55,
               },

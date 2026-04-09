@@ -15,7 +15,6 @@
     git-lfs
     lazygit
     maccy
-    alt-tab-macos
     tree
     nixfmt-rfc-style # For nix formatting
     quarto # For documents
@@ -23,6 +22,7 @@
     zoxide
     neovim
     cmake
+    tmux
     (rstudioWrapper.override {
       packages = with rPackages; [
         ggplot2

@@ -31,28 +31,33 @@
 
           # Enable alternative shell support in nix-darwin
           programs.fish.enable = true;
+          system = {
 
-          # Set Git commit hash for darwin-version.
-          system.configurationRevision = self.rev or self.dirtyRev or null;
+            # Set Git commit hash for darwin-version.
+            configurationRevision = self.rev or self.dirtyRev or null;
 
-          # Used for backwards compatibility, please read the changelog before changing.
-          # $ darwin-rebuild changelog
-          system.stateVersion = 6;
+            # Used for backwards compatibility, please read the changelog before changing.
+            # $ darwin-rebuild changelog
+            stateVersion = 6;
+
+            primaryUser = "sathira";
+          };
 
           # The platform the configuration will be used on.
           nixpkgs.hostPlatform = "aarch64-darwin";
-
-          system.primaryUser = "sathira";
         };
     in
     {
+      # Home Manager (macOS or NixOS): cloudflared + SSH for lab.ren.lk
+      homeManagerModules.jupiter-client = import ./modules/jupiter-client.nix;
+
       # Build darwin flake using:
-      # $ darwin-rebuild build --flake .#mac-ren
+      # $ darwin-rebuild build --flake .#neptune
       darwinConfigurations."neptune" = nix-darwin.lib.darwinSystem {
         modules = [
           configuration
           ./configuration.nix
-          # ./prometheus.nix
+          ./prometheus.nix
           home-manager.darwinModules.home-manager
           {
             home-manager.users.sathira = import "${toString ./.}/home.nix";
