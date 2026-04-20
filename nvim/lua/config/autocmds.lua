@@ -7,6 +7,15 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
+-- LazyVim enables spell for markdown in lazyvim_wrap_spell; keep wrap, disable spell for notes.
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("user_markdown_no_spell", { clear = true }),
+  pattern = { "markdown", "markdown.mdx" },
+  callback = function()
+    vim.opt_local.spell = false
+  end,
+})
+
 local function snacks_explorer_autopen_buf(buf)
   local bo = vim.bo[buf]
   if bo.buftype ~= "" then
