@@ -34,7 +34,6 @@
     statix
     docker
     docker-compose
-    # azuredatastudio
   ];
 
   # Install fonts

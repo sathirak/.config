@@ -21,3 +21,19 @@ vim.keymap.set("n", "<leader>ut", function()
   vim.cmd.colorscheme(next_style)
   vim.notify("Colorscheme: " .. next_style, vim.log.levels.INFO, { title = "Nightfox" })
 end, { desc = "Cycle fox colorscheme" })
+
+-- Ghostty + Neovim: Dawnfox (light) / Carbonfox (dark); see ~/.config/bin/toggle-appearance
+vim.keymap.set("n", "<leader>ub", function()
+  local script = vim.fn.fnamemodify(vim.fn.stdpath("config"), ":h") .. "/bin/toggle-appearance"
+  if vim.fn.executable(script) ~= 1 then
+    vim.notify("Missing executable: " .. script, vim.log.levels.ERROR)
+    return
+  end
+  local skip = vim.v.servername ~= "" and vim.v.servername or "none"
+  local out = vim.fn.system({ script, "from-nvim", skip })
+  local cs = vim.trim(out or "")
+  if cs == "dawnfox" or cs == "carbonfox" then
+    vim.cmd.colorscheme(cs)
+    vim.notify("Appearance: " .. cs, vim.log.levels.INFO, { title = "Theme" })
+  end
+end, { desc = "Toggle light/dark (Dawnfox/Carbonfox)" })

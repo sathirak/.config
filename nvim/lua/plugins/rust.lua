@@ -6,11 +6,11 @@ return {
         settings = {
           ["rust-analyzer"] = {
             check = { command = "check" },
-            checkOnSave = { command = "check" },
+            checkOnSave = { command = "check", allTargets = true },
             numThreads = 1,
             cachePriming = { enable = false },
             lru = { capacity = 32 },
-            cargo = { allTargets = false },
+            cargo = { allTargets = true, allFeatures = true },
           },
         },
       },

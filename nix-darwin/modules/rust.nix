@@ -4,31 +4,38 @@
   username,
   ...
 }:
+let
+  rustVersion = "1.93";
+in
 {
   home.packages = with pkgs; [
     rustup
     cargo-generate
     pkg-config
     libiconv
+    openssl
   ];
 
   home.sessionVariables = {
     PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
   };
 
-  # NOTE: Add "cargo install ..." things as necessary to the activation script
-  home.activation.rustup-components = ''
-    # Set up Rust environment
-    ${pkgs.rustup}/bin/rustup default stable
-    # Ensure all required rustup components are installed
-    REQUIRED_COMPONENTS="rust-analyzer rustfmt clippy"
-    for component in $REQUIRED_COMPONENTS; do
-      if ! ${pkgs.rustup}/bin/rustup component list --installed | grep -q "^$component.*(installed)"; then
-        echo "Installing missing Rust component: $component"
-        ${pkgs.rustup}/bin/rustup component add $component
-      else
-        echo "Rust component already installed: $component"
-      fi
+  home.activation.rustup-setup = ''
+    # Ensure rustup is initialized and the specific version is installed
+    export PATH="$PATH:${pkgs.rustup}/bin"
+
+    echo "Syncing Rust version to: ${rustVersion}"
+
+    # Install the specific toolchain if not present
+    rustup toolchain install ${rustVersion}
+
+    # Set it as the default
+    rustup default ${rustVersion}
+
+    # Optional: Install standard components if they exist for this old version
+    # Note: rust-analyzer didn't exist in 1.19.3, so we check before adding
+    for component in rustfmt clippy; do
+      rustup component add $component || echo "Component $component not available for ${rustVersion}"
     done
   '';
 }

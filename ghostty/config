@@ -47,13 +47,16 @@
 # # which is explained in the docs for that config option.
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
-theme = Dawnfox 
+theme = Carbonfox
 shell-integration = fish
 scrollback-limit = 100000000
 
 font-size = 14
 fullscreen = true
 maximize = true
+
+# Required on macOS to let you use Alt/Option for your Vim keybinds and splits
+macos-option-as-alt = left
 
 window-padding-color = extend-always
 window-padding-balance = true
@@ -65,28 +68,61 @@ clipboard-read = allow
 clipboard-write = allow
 copy-on-select = clipboard
 
+unfocused-split-opacity = 0.4
+
 # --- Splitting Panes ---
 keybind = cmd+shift+h=new_split:left
 keybind = cmd+shift+j=new_split:down
 keybind = cmd+shift+k=new_split:up
 keybind = cmd+shift+l=new_split:right
 
-# --- Navigating Splits (Option + Vim keys) ---
-# Moves focus between Ghostty splits without interfering with Neovim's Ctrl+HJKL
+# --- Navigating Splits ---
 keybind = alt+h=goto_split:left
 keybind = alt+j=goto_split:down
 keybind = alt+k=goto_split:up
 keybind = alt+l=goto_split:right
 
-# --- Resizing Splits (Option + Shift + Vim keys) ---
-# Adjusts the split barriers by 10 pixels directionally
+# --- Resizing Splits ---
 keybind = alt+shift+h=resize_split:left,10
 keybind = alt+shift+j=resize_split:down,10
 keybind = alt+shift+k=resize_split:up,10
 keybind = alt+shift+l=resize_split:right,10
 
 # --- Clean up ---
-# Standard Mac shortcut to close the current split (or window if it's the last one)
 keybind = cmd+w=close_surface
 
-unfocused-split-opacity = 0.4
+
+# =========================================================
+# --- NEOVIM & MODAL SCROLLING CONFIGURATION ---
+# =========================================================
+
+# Hack 1: Open Scrollback directly in Neovim
+# Pressing Cmd+Shift+E will instantly dump the terminal history into a temporary 
+# Neovim buffer where you can use your real Neovim config to scroll, search, or yank.
+keybind = cmd+shift+e=write_scrollback_file:open
+
+
+# Hack 2: Native Ghostty "Vim Normal Mode"
+# Press Alt+Escape to enter a native Normal Mode to look through history.
+keybind = alt+escape=activate_key_table:vim
+
+# Initialize the vim key table
+keybind = vim/
+
+# Vim scrolling movements inside the terminal
+keybind = vim/j=scroll_page_lines:1
+keybind = vim/k=scroll_page_lines:-1
+keybind = vim/ctrl+d=scroll_page_down
+keybind = vim/ctrl+u=scroll_page_up
+
+# Vim file-jumping movements
+keybind = vim/g>g=scroll_to_top
+keybind = vim/shift+g=scroll_to_bottom
+
+# Exit back to regular typing input (Insert Mode)
+keybind = vim/escape=deactivate_key_table
+keybind = vim/i=deactivate_key_table
+
+# Catch-all: Ignore all other standard key inputs while inside normal mode 
+# so you don't accidentally execute or type random commands into the shell
+keybind = vim/catch_all=ignore

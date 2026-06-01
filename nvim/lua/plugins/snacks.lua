@@ -11,13 +11,24 @@ return {
         exclude = { "**/.git", "**/.git/**", "**/.DS_Store" },
         sources = {
           explorer = {
-            git_status = false,
+            -- Populate node.ignored (via git status --ignored) so paths use SnacksPickerPathHidden / PathIgnored like dotfiles.
+            -- item.status is cleared while formatting so git glyphs stay off (prior git_status=false look).
+            git_status = true,
             hidden = true,
             ignored = true,
             exclude = { "**/.git", "**/.git/**", "**/.DS_Store" },
             -- File-type icons off; folder icons (closed/open) stay via icons.files.dir / dir_open
             format = function(item, picker)
               local fmt = require("snacks.picker.format")
+              local Tree = require("snacks.explorer.tree")
+              local node = item.file and Tree:node(item.file)
+              if node and node.ignored then
+                item.ignored = true
+              end
+
+              local saved_status = item.status
+              item.status = nil
+
               local files = picker.opts.icons.files
               local prev = files.enabled
               if not item.dir then
@@ -25,6 +36,8 @@ return {
               end
               local ret = fmt.file(item, picker)
               files.enabled = prev
+
+              item.status = saved_status
               return ret
             end,
             layout = {
